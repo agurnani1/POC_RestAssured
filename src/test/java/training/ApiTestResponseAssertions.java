@@ -5,22 +5,21 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class ApiTests {
+public class ApiTestResponseAssertions {
     @Test
     public void getCategories(){
         String endpoint="http://localhost:80/api_testing/category/read.php";
-        var response=given()
-                .when().get(endpoint).then();
-        response.log().body();
+        given()
+                .when().get(endpoint).then()
+                .assertThat().statusCode(200);
     }
     @Test
     public void getProduct(){
         String endpoint="http://localhost:80/api_testing/product/search.php";
-        var response1=given()
+        given()
                 .queryParam("id", 3)
                 .when().get(endpoint)
-                .then();
-        response1.log().body();
+                .then().assertThat().statusCode(200);
     }
     @Test
     public void createProduct(){

@@ -5,7 +5,7 @@ public class Product {
     private String name;
     private String description;
     private double price;
-
+    private int category_id;
     public Product() {}
     //used for post request
     public Product(String name, String description, double price, int category_id) {
@@ -63,7 +63,14 @@ public class Product {
         this.category_id = category_id;
     }
 
-    private int category_id;
-
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + getId()+
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", price=" + getPrice() +
+                ", category_id=" + getCategory_id() +
+                '}';
+    }
 }
