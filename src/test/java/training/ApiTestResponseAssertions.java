@@ -6,20 +6,23 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 public class ApiTestResponseAssertions {
+    //Example of assertions for different body parts and status code
     @Test
     public void getCategories(){
         String endpoint="http://localhost:80/api_testing/category/read.php";
-        given()
+        var response =given()
                 .when().get(endpoint).then()
                 .assertThat().statusCode(200);
+        response.log().body();
     }
     @Test
     public void getProduct(){
-        String endpoint="http://localhost:80/api_testing/product/search.php";
-        given()
-                .queryParam("id", 3)
+        String endpoint="http://localhost:80/api_testing/product/read_one.php";
+        var response =given()
+                .queryParam("id", 1)
                 .when().get(endpoint)
                 .then().assertThat().statusCode(200);
+
     }
     @Test
     public void createProduct(){
